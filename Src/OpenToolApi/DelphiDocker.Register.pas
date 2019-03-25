@@ -21,16 +21,7 @@ begin
 end;
 
 procedure AddToolBarDocker;
- var
- LToolButton: TToolButton;
- LToolBarItem: TToolBar;
-begin
-   DataModuleImages := TDataModuleImages.Create(nil);
-   LToolBarItem := (BorlandIDEServices as INTAServices).ToolBar[sDebugToolBar];
-   LToolButton := TToolButton.Create(LToolBarItem);
-   LToolButton.Caption := 'Run With Docker';
-   LToolButton.Parent := LToolBarItem;
-   LToolButton.ImageIndex := (BorlandIDEServices as INTAServices).AddImages(DataModuleImages.ImageList1, 'docker');
+
 end;
 
 procedure Register;

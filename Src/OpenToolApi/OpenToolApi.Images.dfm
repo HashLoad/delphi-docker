@@ -2,7 +2,7 @@ object DataModuleImages: TDataModuleImages
   OldCreateOrder = False
   Height = 150
   Width = 215
-  object ImageList1: TImageList
+  object ImageListDocker: TImageList
     Left = 88
     Top = 56
     Bitmap = {
