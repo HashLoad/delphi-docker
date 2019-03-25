@@ -9,6 +9,9 @@ procedure Register;
 
 implementation
 
+uses
+  DelphiDocker.Images;
+
 procedure AddLocalMenuDocker;
 var
   LNotifierMenuIndex: Integer;
@@ -18,15 +21,16 @@ begin
 end;
 
 procedure AddToolBarDocker;
-// var
-// LToolButton: TToolButton;
-// LToolBarItem: TToolBar;
+ var
+ LToolButton: TToolButton;
+ LToolBarItem: TToolBar;
 begin
-  // LToolBarItem := (BorlandIDEServices as INTAServices).ToolBar[sDebugToolBar];
-  // LToolButton := TToolButton.Create(LToolBarItem);
-  // LToolButton.Caption := 'Run With Docker';
-  // LToolButton.
-  // LToolButton.Parent := LToolBarItem;
+   DataModuleImages := TDataModuleImages.Create(nil);
+   LToolBarItem := (BorlandIDEServices as INTAServices).ToolBar[sDebugToolBar];
+   LToolButton := TToolButton.Create(LToolBarItem);
+   LToolButton.Caption := 'Run With Docker';
+   LToolButton.Parent := LToolBarItem;
+   LToolButton.ImageIndex := (BorlandIDEServices as INTAServices).AddImages(DataModuleImages.ImageList1, 'docker');
 end;
 
 procedure Register;

@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ProjectGuid>{CC69F17C-E429-4154-899A-E9F0ACA9841F}</ProjectGuid>
         <MainSource>delphi_docker.dpk</MainSource>
-        <ProjectVersion>18.5</ProjectVersion>
+        <ProjectVersion>18.6</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
@@ -97,6 +97,11 @@
         <DCCReference Include="designide.dcp"/>
         <DCCReference Include="DelphiDocker.Register.pas"/>
         <DCCReference Include="DelphiDocker.LocalMenuItem.pas"/>
+        <DCCReference Include="DelphiDocker.Images.pas">
+            <Form>DataModule1</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -149,7 +154,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="..\..\..\..\Public\Documents\Embarcadero\Studio\20.0\Bpl\delphi_docker.bpl" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Win32\Debug\delphi_docker.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>delphi_docker.bpl</RemoteName>
                         <Overwrite>true</Overwrite>
