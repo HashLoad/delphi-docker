@@ -3,10 +3,11 @@ unit DelphiDocker.Images;
 interface
 
 uses
-  System.SysUtils, System.Classes;
+  System.SysUtils, System.Classes, System.ImageList, Vcl.ImgList, Vcl.Controls;
 
 type
-  TDataModule1 = class(TDataModule)
+  TDataModuleImages = class(TDataModule)
+    ImageList1: TImageList;
   private
     { Private declarations }
   public
@@ -14,7 +15,7 @@ type
   end;
 
 var
-  DataModule1: TDataModule1;
+  DataModuleImages: TDataModuleImages;
 
 implementation
 
