@@ -1,10 +1,10 @@
-object DataModuleImages: TDataModuleImages
+object ToolBarItem: TToolBarItem
   OldCreateOrder = False
   Height = 150
   Width = 215
   object ImageListDocker: TImageList
-    Left = 88
-    Top = 56
+    Left = 136
+    Top = 24
     Bitmap = {
       494C010101000800040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
@@ -144,5 +144,22 @@ object DataModuleImages: TDataModuleImages
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
+  end
+  object ActionListDocker: TActionList
+    Images = ImageListDocker
+    OnExecute = ActionListDockerExecute
+    Left = 40
+    Top = 40
+    object ToolBarItemDocker: TAction
+      Caption = 'Run With Docker'
+      ImageIndex = 0
+    end
+  end
+  object MainMenuDocker: TMainMenu
+    Left = 128
+    Top = 88
+    object Este21: TMenuItem
+      Action = ToolBarItemDocker
+    end
   end
 end

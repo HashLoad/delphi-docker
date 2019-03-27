@@ -35,7 +35,8 @@ requires
 contains
   OpenToolApi.LocalMenuItem in 'Src\OpenToolApi\OpenToolApi.LocalMenuItem.pas',
   OpenToolApi.Register in 'Src\OpenToolApi\OpenToolApi.Register.pas',
-  OpenToolApi.ToolBarItem in 'Src\OpenToolApi\OpenToolApi.ToolBarItem.pas',
-  OpenToolApi.Images in 'Src\OpenToolApi\OpenToolApi.Images.pas' {DataModuleImages: TDataModule};
+  OpenToolApi.ToolBarItem in 'Src\OpenToolApi\OpenToolApi.ToolBarItem.pas' {ToolBarItem: TDataModule},
+  Command.Runner in 'Src\Command\Command.Runner.pas',
+  OpenToolApi.CommandMessage in 'Src\OpenToolApi\OpenToolApi.CommandMessage.pas';
 
 end.

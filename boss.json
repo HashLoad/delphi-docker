@@ -1,0 +1,13 @@
+{
+	"name": "delphi-docker",
+	"description": "",
+	"version": "1.0.0",
+	"private": false,
+	"homepage": "",
+	"mainsrc": "Src/",
+	"supported": "",
+	"dprojFile": "",
+	"dependencies": {
+		"github.com/HashLoad/DOSCommand": "^v1.0.0"
+	}
+}

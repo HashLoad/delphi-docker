@@ -3,24 +3,60 @@ unit OpenToolApi.ToolBarItem;
 interface
 
 uses
-  ToolsAPI, Vcl.ComCtrls, System.Classes, OpenToolApi.Images;
+  System.SysUtils, System.Classes, System.ImageList, Vcl.ImgList, Vcl.Controls, System.Actions, Vcl.ActnList, Vcl.Menus;
 
 type
-
-  TToolBarItem = class(TToolButton)
+  TToolBarItem = class(TDataModule)
+    ImageListDocker: TImageList;
+    ActionListDocker: TActionList;
+    ToolBarItemDocker: TAction;
+    MainMenuDocker: TMainMenu;
+    Este21: TMenuItem;
+    procedure ActionListDockerExecute(Action: TBasicAction; var Handled: Boolean);
+  private
+    class var FInstance: TToolBarItem;
   public
-    constructor Create(AOwner: TComponent); reintroduce;
+    class function GetInstance: TToolBarItem;
+    class procedure Release;
+    constructor Create; reintroduce;
   end;
 
 implementation
 
-{ TToolBarItem }
+uses
+  ToolsAPI;
 
-constructor TToolBarItem.Create(AOwner: TComponent);
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+{$R *.dfm}
+
+procedure TToolBarItem.ActionListDockerExecute(Action: TBasicAction; var Handled: Boolean);
 begin
-  inherited Create(AOwner);
-  Caption := 'Run With Docker';
-  ImageIndex := TDataModuleImages.GetInstance.IndexDocker;
+//
 end;
+
+constructor TToolBarItem.Create;
+begin
+  inherited Create(nil);
+end;
+
+class function TToolBarItem.GetInstance: TToolBarItem;
+begin
+  if not Assigned(FInstance) then
+    FInstance := TToolBarItem.Create;
+
+  Result := FInstance;
+end;
+
+class procedure TToolBarItem.Release;
+begin
+  if Assigned(FInstance) then
+    FInstance.Free;
+end;
+
+initialization
+
+finalization
+
+TToolBarItem.Release;
 
 end.

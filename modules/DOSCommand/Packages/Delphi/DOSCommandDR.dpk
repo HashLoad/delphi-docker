@@ -1,4 +1,4 @@
-package delphi_docker;
+package DOSCommandDR;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
@@ -9,32 +9,31 @@ package delphi_docker;
 {$EXTENDEDSYNTAX ON}
 {$IMPORTEDDATA ON}
 {$IOCHECKS ON}
-{$LOCALSYMBOLS ON}
+{$LOCALSYMBOLS OFF}
 {$LONGSTRINGS ON}
 {$OPENSTRINGS ON}
-{$OPTIMIZATION OFF}
+{$OPTIMIZATION ON}
 {$OVERFLOWCHECKS OFF}
 {$RANGECHECKS OFF}
-{$REFERENCEINFO ON}
+{$REFERENCEINFO OFF}
 {$SAFEDIVIDE OFF}
-{$STACKFRAMES ON}
+{$STACKFRAMES OFF}
 {$TYPEDADDRESS OFF}
 {$VARSTRINGCHECKS ON}
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
-{$DEFINE DEBUG}
+{$DEFINE RELEASE}
 {$ENDIF IMPLICITBUILDING}
-{$DESIGNONLY}
-{$IMPLICITBUILD ON}
+{$DESCRIPTION 'TurboPack DOSCommand Runtime Package for Delphi'}
+{$LIBSUFFIX '260'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
 
 requires
-  rtl,
-  designide;
+  rtl;
 
 contains
-  DelphiDocker.Register in 'DelphiDocker.Register.pas',
-  DelphiDocker.LocalMenuItem in 'DelphiDocker.LocalMenuItem.pas',
-  DelphiDocker.Images in 'DelphiDocker.Images.pas' {DataModuleImages: TDataModule};
+  DosCommand in '..\..\Source\DosCommand.pas';
 
 end.
