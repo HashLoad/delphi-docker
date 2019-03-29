@@ -1,4 +1,4 @@
-unit Providers.Message;
+unit Command.Message;
 
 interface
 
@@ -32,7 +32,7 @@ begin
     FInstance.Free;
 end;
 
-class function TProviderMessage.TCommandMessage: TCommandMessage;
+class function TCommandMessage.GetInstance: TCommandMessage;
 begin
   if not Assigned(FInstance) then
     FInstance := TCommandMessage.Create;

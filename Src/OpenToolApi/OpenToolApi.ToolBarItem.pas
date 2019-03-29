@@ -13,10 +13,12 @@ type
     MainMenuDocker: TMainMenu;
     Este21: TMenuItem;
     procedure ActionListDockerExecute(Action: TBasicAction; var Handled: Boolean);
+    procedure ActionListDockerUpdate(Action: TBasicAction; var Handled: Boolean);
   private
     class var FInstance: TToolBarItem;
   public
     class function GetInstance: TToolBarItem;
+    class procedure teste(ASender:TObject);
     class procedure Release;
     constructor Create; reintroduce;
   end;
@@ -24,14 +26,19 @@ type
 implementation
 
 uses
-  ToolsAPI;
+  ToolsAPI, Vcl.Dialogs, Wrapper.DockerCompose, UtilityFunctions;
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 {$R *.dfm}
 
 procedure TToolBarItem.ActionListDockerExecute(Action: TBasicAction; var Handled: Boolean);
 begin
-//
+  ShowMessage('Rodando com docker');
+end;
+
+procedure TToolBarItem.ActionListDockerUpdate(Action: TBasicAction; var Handled: Boolean);
+begin
+//  ShowMessage('Update');
 end;
 
 constructor TToolBarItem.Create;
@@ -51,6 +58,17 @@ class procedure TToolBarItem.Release;
 begin
   if Assigned(FInstance) then
     FInstance.Free;
+end;
+
+class procedure TToolBarItem.teste(ASender: TObject);
+var
+ LDebugger: IOTADebuggerServices;
+begin
+  DockerComposeUp(ExtractFilePath(ActiveProject.FileName));
+
+  ActiveProject.ProjectBuilder.BuildProject(TOTACompileMode.cmOTABuild, True, True);
+
+//  (BorlandIDEServices as IOTADebuggerServices).CreateProcess('E:\Projetos\_playground\dosCommandTest\Win32\Debug\Project3.exe', '');
 end;
 
 initialization

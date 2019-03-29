@@ -5,14 +5,14 @@ interface
 uses
   DOSCommand, OpenToolApi.CommandMessage;
 
-procedure Runner(ACommand, APath: string; ALoadPackages: Boolean);
+function Runner(ACommand, APath: string): Cardinal;
 
 implementation
 
 uses
-  System.SysUtils;
+  System.SysUtils, Vcl.Forms;
 
-procedure Runner(ACommand, APath: string; ALoadPackages: Boolean);
+function Runner(ACommand, APath: string): Cardinal;
 var
   LDosCommand: TDosCommand;
 begin
@@ -20,19 +20,32 @@ begin
   try
     LDosCommand.OnNewLine := procedure(ASender: TObject; const ANewLine: string; AOutputType: TOutputType)
       begin
-        TCommandMessage.GetInstance.WriteLn(ANewLine);
+//        TCommandMessage.GetInstance.WriteLn(ANewLine);
+      end;
+
+    LDosCommand.OnTerminated := procedure(ASender: TObject)
+      begin
+//        ASender.Free;
       end;
 
     LDosCommand.InputToOutput := False;
     LDosCommand.CurrentDir := APath;
-    LDosCommand.CommandLine := GetEnvironmentVariable('COMSPEC');
+    LDosCommand.CommandLine := ACommand;
     LDosCommand.Execute;
-    LDosCommand.SendLine(ACommand, False);
-    LDosCommand.SendLine(#13, False);
-    LDosCommand.SendLine('', True);
-  finally
 
+    while LDosCommand.IsRunning do
+    begin
+      Application.ProcessMessages;
+      Sleep(0);
+    end;
+
+    Result := LDosCommand.ExitCode
+
+  finally
+    LDosCommand.Free;
   end;
 end;
+
+
 
 end.

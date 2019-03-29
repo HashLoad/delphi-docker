@@ -10,6 +10,9 @@ procedure Register;
 
 implementation
 
+uses
+  OpenToolApi.Events, Vcl.ActnList, Vcl.Menus, UtilityFunctions;
+
 procedure AddLocalMenuDocker;
 var
   LNotifierMenuIndex: Integer;
@@ -21,12 +24,17 @@ end;
 procedure AddToolBarDocker;
 var
   LServices: INTAServices;
+  LAction: TAction;
+  LMenuItem: TMenuItem;
 begin
   LServices := (BorlandIDEServices as INTAServices);
   LServices.MenuBeginUpdate;
   try
-    LServices.NewToolbar('Docker', 'Docker');
-    LServices.AddToolButton('Docker', 'DockerWithDocker', TToolBarItem.GetInstance.ToolBarItemDocker);
+    LServices.AddImages(TToolBarItem.GetInstance.ImageListDocker);
+
+    UtilityFunctions.CreateMenuItem('RunWithDocker', 'Run With Docker', 'Run', TToolBarItem.GetInstance.teste, nil,
+      False, True, 'Alt+F9');
+
   finally
     LServices.MenuEndUpdate;
   end;
@@ -42,9 +50,9 @@ end;
 
 procedure Register;
 begin
-  // AddLocalMenuDocker;
+  AddLocalMenuDocker;
   AddToolBarDocker;
-  // AddCommandMessage;
+  AddCommandMessage;
 end;
 
 end.

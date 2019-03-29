@@ -7,7 +7,7 @@ uses
 
 type
 
-  TEventsToolBar = class(TInterfacedObject, INTACustomizeToolbarNotifier, IOTANotifier)
+  TEventsToolBar = class(TInterfacedObject, INTACustomizeToolbarNotifier)
     procedure AfterSave;
     procedure BeforeSave;
     procedure Destroyed;

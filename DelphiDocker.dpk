@@ -30,13 +30,20 @@ package DelphiDocker;
 
 requires
   rtl,
-  designide;
+  designide,
+  boss_ide;
 
 contains
-  OpenToolApi.LocalMenuItem in 'Src\OpenToolApi\OpenToolApi.LocalMenuItem.pas',
   OpenToolApi.Register in 'Src\OpenToolApi\OpenToolApi.Register.pas',
   OpenToolApi.ToolBarItem in 'Src\OpenToolApi\OpenToolApi.ToolBarItem.pas' {ToolBarItem: TDataModule},
   Command.Runner in 'Src\Command\Command.Runner.pas',
-  OpenToolApi.CommandMessage in 'Src\OpenToolApi\OpenToolApi.CommandMessage.pas';
+  OpenToolApi.CommandMessage in 'Src\OpenToolApi\OpenToolApi.CommandMessage.pas',
+  OpenToolApi.LocalMenuItem in 'Src\OpenToolApi\OpenToolApi.LocalMenuItem.pas',
+  OpenToolApi.Events in 'Src\OpenToolApi\OpenToolApi.Events.pas',
+  UtilityFunctions in 'Src\OpenToolApi\UtilityFunctions.pas',
+  Wrapper.Docker in 'Src\wrapper\Wrapper.Docker.pas',
+  Wrapper.DockerCompose in 'Src\wrapper\Wrapper.DockerCompose.pas',
+  Command.Cmd in 'Src\Command\Command.Cmd.pas',
+  Command.Message in 'Src\Command\Command.Message.pas';
 
 end.
