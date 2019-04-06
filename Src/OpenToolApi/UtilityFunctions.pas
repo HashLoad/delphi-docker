@@ -103,6 +103,8 @@ Type
     strShortCut : String) : TMenuItem;
   Procedure PatchActionShortcuts(Sender : TObject);
 
+  function NativeServices: INTAServices;
+
 Implementation
 
 Uses
@@ -1128,6 +1130,12 @@ Begin
   {$ENDIF}
   {$ENDIF}
 End;
+
+
+function NativeServices: INTAServices;
+begin
+  Result := (BorlandIDEServices as INTAServices);
+end;
 
 (** Creates an object list for storing all action reference so they can be
     removed from the IDE. **)

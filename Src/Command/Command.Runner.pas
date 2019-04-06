@@ -12,40 +12,36 @@ implementation
 uses
   System.SysUtils, Vcl.Forms;
 
+var
+  FMonitorLock: TObject;
+
 function Runner(ACommand, APath: string): Cardinal;
 var
   LDosCommand: TDosCommand;
 begin
-  LDosCommand := TDosCommand.Create(nil);
+  System.TMonitor.Enter(FMonitorLock);
   try
-    LDosCommand.OnNewLine := procedure(ASender: TObject; const ANewLine: string; AOutputType: TOutputType)
+    LDosCommand := TDosCommand.Create(nil);
+    try
+      LDosCommand.InputToOutput := False;
+      LDosCommand.CurrentDir := APath;
+      LDosCommand.CommandLine := ACommand;
+      LDosCommand.Execute;
+
+      while LDosCommand.IsRunning do
       begin
-//        TCommandMessage.GetInstance.WriteLn(ANewLine);
+        Application.ProcessMessages;
+        Sleep(0);
       end;
 
-    LDosCommand.OnTerminated := procedure(ASender: TObject)
-      begin
-//        ASender.Free;
-      end;
+      Result := LDosCommand.ExitCode
 
-    LDosCommand.InputToOutput := False;
-    LDosCommand.CurrentDir := APath;
-    LDosCommand.CommandLine := ACommand;
-    LDosCommand.Execute;
-
-    while LDosCommand.IsRunning do
-    begin
-      Application.ProcessMessages;
-      Sleep(0);
+    finally
+      LDosCommand.Free;
     end;
-
-    Result := LDosCommand.ExitCode
-
   finally
-    LDosCommand.Free;
+    System.TMonitor.Exit(FMonitorLock);
   end;
 end;
-
-
 
 end.

@@ -8,17 +8,12 @@ uses
 type
   TToolBarItem = class(TDataModule)
     ImageListDocker: TImageList;
-    ActionListDocker: TActionList;
-    ToolBarItemDocker: TAction;
-    MainMenuDocker: TMainMenu;
-    Este21: TMenuItem;
-    procedure ActionListDockerExecute(Action: TBasicAction; var Handled: Boolean);
-    procedure ActionListDockerUpdate(Action: TBasicAction; var Handled: Boolean);
   private
+    FImageStartIndex: Integer;
     class var FInstance: TToolBarItem;
   public
     class function GetInstance: TToolBarItem;
-    class procedure teste(ASender:TObject);
+    class procedure RunWithDocker(ASender: TObject);
     class procedure Release;
     constructor Create; reintroduce;
   end;
@@ -26,24 +21,15 @@ type
 implementation
 
 uses
-  ToolsAPI, Vcl.Dialogs, Wrapper.DockerCompose, UtilityFunctions;
+  ToolsAPI, Vcl.Dialogs, Wrapper.DockerCompose, UtilityFunctions, Wrapper.Docker;
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 {$R *.dfm}
 
-procedure TToolBarItem.ActionListDockerExecute(Action: TBasicAction; var Handled: Boolean);
-begin
-  ShowMessage('Rodando com docker');
-end;
-
-procedure TToolBarItem.ActionListDockerUpdate(Action: TBasicAction; var Handled: Boolean);
-begin
-//  ShowMessage('Update');
-end;
-
 constructor TToolBarItem.Create;
 begin
   inherited Create(nil);
+  FImageStartIndex := NativeServices.AddImages(ImageListDocker, 'docker');
 end;
 
 class function TToolBarItem.GetInstance: TToolBarItem;
@@ -60,15 +46,33 @@ begin
     FInstance.Free;
 end;
 
-class procedure TToolBarItem.teste(ASender: TObject);
+class procedure TToolBarItem.RunWithDocker(ASender: TObject);
 var
- LDebugger: IOTADebuggerServices;
+  LDebugger: IOTADebuggerServices;
+  LMainMenu: TMainMenu;
+  LMenuItem: TMenuItem;
 begin
-  DockerComposeUp(ExtractFilePath(ActiveProject.FileName));
+  if not DoDockerPreFlight then
+    Exit;
 
-  ActiveProject.ProjectBuilder.BuildProject(TOTACompileMode.cmOTABuild, True, True);
 
-//  (BorlandIDEServices as IOTADebuggerServices).CreateProcess('E:\Projetos\_playground\dosCommandTest\Win32\Debug\Project3.exe', '');
+
+
+  if not DockerComposeUp(ExtractFilePath(ActiveProject.FileName)) then
+  begin
+    MessageDlg('Can''t start docker compose or docker not started, verify output messages.',
+      TMsgDlgType.mtError,
+      [TMsgDlgBtn.mbOK],
+      1);
+    Exit;
+  end;
+
+  LMainMenu := NativeServices.MainMenu;
+
+  LMenuItem := LMainMenu.Items.Find('Run').Find('Run');
+  if Assigned(LMenuItem) then
+    LMenuItem.Action.Execute;
+
 end;
 
 initialization

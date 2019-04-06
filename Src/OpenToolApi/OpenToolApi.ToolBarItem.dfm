@@ -145,23 +145,4 @@ object ToolBarItem: TToolBarItem
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
   end
-  object ActionListDocker: TActionList
-    Images = ImageListDocker
-    OnExecute = ActionListDockerExecute
-    OnUpdate = ActionListDockerUpdate
-    Left = 40
-    Top = 40
-    object ToolBarItemDocker: TAction
-      Category = 'Run'
-      Caption = 'Run With Docker'
-      ImageIndex = 0
-    end
-  end
-  object MainMenuDocker: TMainMenu
-    Left = 128
-    Top = 88
-    object Este21: TMenuItem
-      Action = ToolBarItemDocker
-    end
-  end
 end

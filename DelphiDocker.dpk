@@ -30,8 +30,7 @@ package DelphiDocker;
 
 requires
   rtl,
-  designide,
-  boss_ide;
+  designide;
 
 contains
   OpenToolApi.Register in 'Src\OpenToolApi\OpenToolApi.Register.pas',
@@ -44,6 +43,7 @@ contains
   Wrapper.Docker in 'Src\wrapper\Wrapper.Docker.pas',
   Wrapper.DockerCompose in 'Src\wrapper\Wrapper.DockerCompose.pas',
   Command.Cmd in 'Src\Command\Command.Cmd.pas',
-  Command.Message in 'Src\Command\Command.Message.pas';
+  Command.Message in 'Src\Command\Command.Message.pas',
+  Docker.Utils in 'Src\Docker\Docker.Utils.pas';
 
 end.

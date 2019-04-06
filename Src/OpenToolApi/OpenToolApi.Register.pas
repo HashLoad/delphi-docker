@@ -32,7 +32,8 @@ begin
   try
     LServices.AddImages(TToolBarItem.GetInstance.ImageListDocker);
 
-    UtilityFunctions.CreateMenuItem('RunWithDocker', 'Run With Docker', 'Run', TToolBarItem.GetInstance.teste, nil,
+    UtilityFunctions.CreateMenuItem('RunWithDocker', 'Run With Docker', 'Run',
+      TToolBarItem.GetInstance.RunWithDocker, nil,
       False, True, 'Alt+F9');
 
   finally
