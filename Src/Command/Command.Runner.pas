@@ -5,7 +5,8 @@ interface
 uses
   DOSCommand, OpenToolApi.CommandMessage;
 
-function Runner(ACommand, APath: string): Cardinal;
+function Runner(APath, ACommand: string): Integer; overload;
+function Runner(ACommand: string): Integer; overload;
 
 implementation
 
@@ -15,15 +16,15 @@ uses
 var
   FMonitorLock: TObject;
 
-function Runner(ACommand, APath: string): Cardinal;
+function DoRunner(APath, ACommand: string): Integer;
 var
   LDosCommand: TDosCommand;
 begin
-  System.TMonitor.Enter(FMonitorLock);
+//System.TMonitor.Enter(FMonitorLock);
   try
     LDosCommand := TDosCommand.Create(nil);
     try
-      LDosCommand.InputToOutput := False;
+//      LDosCommand.InputToOutput := False;
       LDosCommand.CurrentDir := APath;
       LDosCommand.CommandLine := ACommand;
       LDosCommand.Execute;
@@ -31,17 +32,25 @@ begin
       while LDosCommand.IsRunning do
       begin
         Application.ProcessMessages;
-        Sleep(0);
       end;
 
-      Result := LDosCommand.ExitCode
-
+      Result := LDosCommand.ExitCode;
     finally
       LDosCommand.Free;
     end;
   finally
-    System.TMonitor.Exit(FMonitorLock);
+//    System.TMonitor.Exit(FMonitorLock);
   end;
+end;
+
+function Runner(ACommand: string): Integer;
+begin
+  Result := DoRunner('C:/', ACommand);
+end;
+
+function Runner(APath, ACommand: string): Integer;
+begin
+  Result := DoRunner(APath, ACommand);
 end;
 
 end.

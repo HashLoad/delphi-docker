@@ -44,6 +44,7 @@ contains
   Command.Message in 'Src\Command\Command.Message.pas',
   Docker.Utils in 'Src\Docker\Docker.Utils.pas',
   Wrapper.Docker in 'Src\Wrapper\Wrapper.Docker.pas',
-  Wrapper.DockerCompose in 'Src\Wrapper\Wrapper.DockerCompose.pas';
+  Wrapper.DockerCompose in 'Src\Wrapper\Wrapper.DockerCompose.pas',
+  Docker.RunWithDocker in 'Src\Docker\Docker.RunWithDocker.pas';
 
 end.

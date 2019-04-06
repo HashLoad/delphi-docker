@@ -61,6 +61,9 @@ type
 
 implementation
 
+uses
+  Docker.RunWithDocker;
+
 constructor TLocalMenuItem.Create;
 begin
   FCaption := 'Run With Docker';
@@ -69,8 +72,15 @@ begin
 end;
 
 procedure TLocalMenuItem.Execute(const MenuContextList: IInterfaceList);
+var
+  LRunWithDocker: TRunWithDocker;
 begin
-  ShowMessage('teste');
+  LRunWithDocker := TRunWithDocker.Create;
+  try
+    LRunWithDocker.Execute;
+  finally
+    LRunWithDocker.Free;
+  end;
 end;
 
 function TLocalMenuItem.GetCaption: string;
