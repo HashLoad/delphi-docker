@@ -130,6 +130,7 @@
         <DCCReference Include="Src\Wrapper\Wrapper.Docker.pas"/>
         <DCCReference Include="Src\Wrapper\Wrapper.DockerCompose.pas"/>
         <DCCReference Include="Src\Docker\Docker.RunWithDocker.pas"/>
+        <DCCReference Include="Src\Constants\Constants.Version.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

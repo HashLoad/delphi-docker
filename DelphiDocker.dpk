@@ -45,6 +45,7 @@ contains
   Docker.Utils in 'Src\Docker\Docker.Utils.pas',
   Wrapper.Docker in 'Src\Wrapper\Wrapper.Docker.pas',
   Wrapper.DockerCompose in 'Src\Wrapper\Wrapper.DockerCompose.pas',
-  Docker.RunWithDocker in 'Src\Docker\Docker.RunWithDocker.pas';
+  Docker.RunWithDocker in 'Src\Docker\Docker.RunWithDocker.pas',
+  Constants.Version in 'Src\Constants\Constants.Version.pas';
 
 end.
