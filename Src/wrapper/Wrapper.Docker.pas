@@ -19,12 +19,12 @@ const
 
 function DockerIsRunning: Boolean;
 begin
-  Result := Runner(DOCKER_PS) = 0;
+//  Result := Runner(DOCKER_PS) = 0;
 end;
 
 function DockerIsInstalled: Boolean;
 begin
-  Result := Runner(WHERE_DOCKER) = 0;
+//  Result := Runner(WHERE_DOCKER) = 0;
 end;
 
 function DoDockerPreFlight: Boolean;

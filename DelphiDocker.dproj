@@ -67,7 +67,7 @@
         <VerInfo_Locale>1046</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <DCC_BplOutput>.\$(Platform)\$(Config)</DCC_BplOutput>
-        <DCC_UnitSearchPath>$(DCC_UnitSearchPath);$(DCC_UnitSearchPath);modules\DOSCommand\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>$(DCC_UnitSearchPath);$(DCC_UnitSearchPath);$(DCC_UnitSearchPath);modules\DOSCommand\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Linux64)'!=''">
         <DCC_UsePackage>rtl;$(DCC_UsePackage)</DCC_UsePackage>
@@ -77,8 +77,8 @@
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <Debugger_RunParams>-debug</Debugger_RunParams>
         <DCC_UsePackage>rtl;$(DCC_UsePackage)</DCC_UsePackage>
+        <Debugger_HostApplication>$(BDS)\bin\bds.exe</Debugger_HostApplication>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_UsePackage>rtl;$(DCC_UsePackage)</DCC_UsePackage>
@@ -95,7 +95,7 @@
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <Debugger_HostApplication>E:\tools\Embarcadero\Studio\19.0\bin\bds.exe</Debugger_HostApplication>
+        <Debugger_HostApplication>$(BDS)\bin\bds.exe</Debugger_HostApplication>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -124,11 +124,11 @@
         <DCCReference Include="Src\OpenToolApi\OpenToolApi.LocalMenuItem.pas"/>
         <DCCReference Include="Src\OpenToolApi\OpenToolApi.Events.pas"/>
         <DCCReference Include="Src\OpenToolApi\UtilityFunctions.pas"/>
-        <DCCReference Include="Src\wrapper\Wrapper.Docker.pas"/>
-        <DCCReference Include="Src\wrapper\Wrapper.DockerCompose.pas"/>
         <DCCReference Include="Src\Command\Command.Cmd.pas"/>
         <DCCReference Include="Src\Command\Command.Message.pas"/>
         <DCCReference Include="Src\Docker\Docker.Utils.pas"/>
+        <DCCReference Include="Src\Wrapper\Wrapper.Docker.pas"/>
+        <DCCReference Include="Src\Wrapper\Wrapper.DockerCompose.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
