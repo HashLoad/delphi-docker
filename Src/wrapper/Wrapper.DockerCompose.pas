@@ -27,9 +27,9 @@ end;
 
 function DockerComposeUp(APath: string): Boolean;
 begin
-  Result := Runner(DOCKER_COMPOSE_UP_D, APath) = 0;
-  Sleep(100);
-  TCommandCmd.GetInstance.Run(DOCKER_COMPOSE_LOGS_F, APath);
+//  Result := Runner(DOCKER_COMPOSE_UP_D, APath) = 0;
+//  Sleep(100);                                     8
+//  TCommandCmd.GetInstance.Run(DOCKER_COMPOSE_LOGS_F, APath);
 end;
 
 function DockerComposeDown(APath: string): Boolean;
