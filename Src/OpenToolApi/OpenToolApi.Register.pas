@@ -3,15 +3,14 @@ unit OpenToolApi.Register;
 interface
 
 uses
-  ToolsAPI, Vcl.ComCtrls, OpenToolApi.LocalMenuItem, OpenToolApi.CommandMessage,
-  OpenToolApi.ToolBarItem;
+  ToolsAPI, Vcl.ComCtrls, OpenToolApi.LocalMenuItem, OpenToolApi.CommandMessage, OpenToolApi.MenuItem;
 
 procedure Register;
 
 implementation
 
 uses
-  OpenToolApi.Events, Vcl.ActnList, Vcl.Menus, UtilityFunctions;
+  Vcl.ActnList, Vcl.Menus;
 
 procedure AddLocalMenuDocker;
 var
@@ -21,23 +20,15 @@ begin
     (TNotifierLocalMenuItem.Create);
 end;
 
-procedure AddToolBarDocker;
+procedure AddMenuItemDocker;
 var
-  LServices: INTAServices;
-  LAction: TAction;
-  LMenuItem: TMenuItem;
+  LMenuItem: TDockerMenuItem;
 begin
-  LServices := (BorlandIDEServices as INTAServices);
-  LServices.MenuBeginUpdate;
+  LMenuItem := TDockerMenuItem.Create;
   try
-    LServices.AddImages(TToolBarItem.GetInstance.ImageListDocker);
-
-    UtilityFunctions.CreateMenuItem('RunWithDocker', 'Run With Docker', 'Run',
-      TToolBarItem.GetInstance.RunWithDocker, nil,
-      False, True, 'Alt+F9');
-
+    LMenuItem.AddMenuItem;
   finally
-    LServices.MenuEndUpdate;
+    LMenuItem.Free;
   end;
 end;
 
@@ -52,7 +43,7 @@ end;
 procedure Register;
 begin
   AddLocalMenuDocker;
-  AddToolBarDocker;
+  AddMenuItemDocker;
   AddCommandMessage;
 end;
 

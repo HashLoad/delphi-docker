@@ -34,18 +34,12 @@ requires
 
 contains
   OpenToolApi.Register in 'Src\OpenToolApi\OpenToolApi.Register.pas',
-  OpenToolApi.ToolBarItem in 'Src\OpenToolApi\OpenToolApi.ToolBarItem.pas' {ToolBarItem: TDataModule},
   Command.Runner in 'Src\Command\Command.Runner.pas',
   OpenToolApi.CommandMessage in 'Src\OpenToolApi\OpenToolApi.CommandMessage.pas',
   OpenToolApi.LocalMenuItem in 'Src\OpenToolApi\OpenToolApi.LocalMenuItem.pas',
-  OpenToolApi.Events in 'Src\OpenToolApi\OpenToolApi.Events.pas',
-  UtilityFunctions in 'Src\OpenToolApi\UtilityFunctions.pas',
-  Command.Cmd in 'Src\Command\Command.Cmd.pas',
-  Command.Message in 'Src\Command\Command.Message.pas',
-  Docker.Utils in 'Src\Docker\Docker.Utils.pas',
-  Wrapper.Docker in 'Src\Wrapper\Wrapper.Docker.pas',
-  Wrapper.DockerCompose in 'Src\Wrapper\Wrapper.DockerCompose.pas',
+  OpenToolApi.Tools in 'Src\OpenToolApi\OpenToolApi.Tools.pas',
   Docker.RunWithDocker in 'Src\Docker\Docker.RunWithDocker.pas',
-  Constants.Version in 'Src\Constants\Constants.Version.pas';
+  Constants.Version in 'Src\Constants\Constants.Version.pas',
+  OpenToolApi.MenuItem in 'Src\OpenToolApi\OpenToolApi.MenuItem.pas';
 
 end.

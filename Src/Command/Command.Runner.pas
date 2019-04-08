@@ -3,7 +3,7 @@ unit Command.Runner;
 interface
 
 uses
-  DOSCommand, OpenToolApi.CommandMessage, UtilityFunctions, System.Classes;
+  DOSCommand, OpenToolApi.CommandMessage, OpenToolApi.Tools, System.Classes;
 
 type
   TRunnerReturn = record
@@ -20,13 +20,20 @@ implementation
 uses
   System.SysUtils, Vcl.Forms;
 
+procedure OnReadLine(ASender: TObject; const ANewLine: string; AOutputType: TOutputType);
+begin
+  TCommandMessage.GetInstance.WriteLn(ANewLine);
+end;
+
 function DoRunner(APath, ACommand: string): TRunnerReturn;
 var
   LDosCommand: TDosCommand;
 begin
   LDosCommand := TDosCommand.Create(nil);
   try
-    LDosCommand.InputToOutput := True;
+    TCommandMessage.GetInstance.WriteLn(APath + '>' + ACommand);
+    LDosCommand.OnNewLine := OnReadLine;
+    LDosCommand.InputToOutput := False;
     LDosCommand.CurrentDir := APath;
     LDosCommand.CommandLine := ACommand;
     LDosCommand.Execute;
