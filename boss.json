@@ -4,7 +4,9 @@
 	"version": "1.0.0",
 	"homepage": "",
 	"mainsrc": "Src/",
-	"projects": [],
+	"projects": [
+		"DelphiDocker.dproj"
+	],
 	"dependencies": {
 		"github.com/HashLoad/DOSCommand": "^v1.0.0"
 	}
