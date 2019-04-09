@@ -24,6 +24,7 @@ type
     FPosition: Integer;
     FVerb: string;
     FOnExecute: TNotifyEvent;
+    FProject: IOTAProject;
   public
     function GetCaption: string;
     function GetChecked: Boolean;
@@ -56,7 +57,7 @@ type
     function PreExecute(const MenuContextList: IInterfaceList): Boolean;
     function PostExecute(const MenuContextList: IInterfaceList): Boolean;
     property IsMultiSelectable: Boolean read GetIsMultiSelectable write SetIsMultiSelectable;
-    constructor Create;
+    constructor Create(AProject: IOTAProject);
   end;
 
 implementation
@@ -64,11 +65,12 @@ implementation
 uses
   Docker.RunWithDocker;
 
-constructor TLocalMenuItem.Create;
+constructor TLocalMenuItem.Create(AProject: IOTAProject);
 begin
   FCaption := 'Run With Docker';
   FEnabled := True;
   FPosition := pmmpRunNoDebug + 10;
+  FProject := AProject;
 end;
 
 procedure TLocalMenuItem.Execute(const MenuContextList: IInterfaceList);
@@ -77,7 +79,7 @@ var
 begin
   LRunWithDocker := TRunWithDocker.Create;
   try
-    LRunWithDocker.Execute;
+    LRunWithDocker.Execute(FProject);
   finally
     LRunWithDocker.Free;
   end;
@@ -191,7 +193,7 @@ begin
   if IsProject(AProject.ApplicationType) and (not AIsMultiSelect) and Assigned(AProject) and
     (AIdentList.IndexOf(sProjectContainer) <> -1) and Assigned(AProjectManagerMenuList) then
   begin
-    AProjectManagerMenuList.Add(TLocalMenuItem.Create);
+    AProjectManagerMenuList.Add(TLocalMenuItem.Create(AProject));
   end;
 end;
 

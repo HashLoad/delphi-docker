@@ -115,22 +115,13 @@
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="designide.dcp"/>
         <DCCReference Include="Src\OpenToolApi\OpenToolApi.Register.pas"/>
-        <DCCReference Include="Src\OpenToolApi\OpenToolApi.ToolBarItem.pas">
-            <Form>ToolBarItem</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
         <DCCReference Include="Src\Command\Command.Runner.pas"/>
         <DCCReference Include="Src\OpenToolApi\OpenToolApi.CommandMessage.pas"/>
         <DCCReference Include="Src\OpenToolApi\OpenToolApi.LocalMenuItem.pas"/>
-        <DCCReference Include="Src\OpenToolApi\OpenToolApi.Events.pas"/>
-        <DCCReference Include="Src\OpenToolApi\UtilityFunctions.pas"/>
-        <DCCReference Include="Src\Command\Command.Cmd.pas"/>
-        <DCCReference Include="Src\Command\Command.Message.pas"/>
-        <DCCReference Include="Src\Docker\Docker.Utils.pas"/>
-        <DCCReference Include="Src\Wrapper\Wrapper.Docker.pas"/>
-        <DCCReference Include="Src\Wrapper\Wrapper.DockerCompose.pas"/>
+        <DCCReference Include="Src\OpenToolApi\OpenToolApi.Tools.pas"/>
         <DCCReference Include="Src\Docker\Docker.RunWithDocker.pas"/>
+        <DCCReference Include="Src\Constants\Constants.Version.pas"/>
+        <DCCReference Include="Src\OpenToolApi\OpenToolApi.MenuItem.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

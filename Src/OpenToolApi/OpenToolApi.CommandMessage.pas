@@ -46,7 +46,6 @@ begin
 
   FGroup.AutoScroll := True;
   FGroup.CanClose := False;
-  FService.AddTitleMessage('Docker initialized..', FGroup);
 end;
 
 procedure TCommandMessage.WriteLn(ALine: string);
