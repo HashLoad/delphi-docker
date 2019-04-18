@@ -31,7 +31,9 @@ package DelphiDocker;
 
 requires
   rtl,
-  designide;
+  designide,
+  DOSCommandDD{BOSS},
+  DOSCommandDR{BOSS};
 
 contains
   OpenToolApi.Register in 'Src\OpenToolApi\OpenToolApi.Register.pas',
